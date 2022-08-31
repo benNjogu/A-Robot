@@ -22,3 +22,24 @@ const roads = [
 ];
 //The n/w of roads in Meadowfield form a graph.
 //A graph is a collection of points(places in the village) with lines between them(roads).
+
+function buildGraph(edges) {
+  let graph = Object.create(null); //Creates an object with no prototype.
+  function addEdge(from, to) {
+    if (graph[from] == null) {
+      graph[from] == [to];
+    } else {
+      graph[from].push(to);
+    }
+  }
+
+  for (let [from, to] of edges.map((r) => r.split("-"))) {
+    addEdge(from, to);
+    addEdge(to, from);
+  }
+
+  return graph;
+}
+
+const roadGraph = buildGraph(roads);
+console.log(roadGraph);
