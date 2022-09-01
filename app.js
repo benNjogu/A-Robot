@@ -74,3 +74,12 @@ let next = first.move("Alice's House");
 console.log(next.place); //-> Alice's House
 console.log(next.parcels); //-> []
 console.log(first.place);//-> Post Office
+
+let object = Object.freeze({ value: 5 });
+object.value = 10;
+console.log(object.value);//-> 5
+/**
+ * Object.freeze as used above changes an object so that writing to its properties is ignored.
+ * It helps one to understand his/her programs.
+ * Its all about complexity management.
+ */
