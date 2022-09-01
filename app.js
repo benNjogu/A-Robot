@@ -121,4 +121,25 @@ VillageState.random = function (parcelCount = 5) {
   return new VillageState("Post Office", parcels);
 };
 
-runRobot(VillageState.random(), randomRobot);
+//runRobot(VillageState.random(), randomRobot);
+
+/*
+We should be able to do a lot better than the random robot. An easy improve-
+ment would be to take a hint from the way real-world mail delivery works. If
+we find a route that passes all places in the village, the robot could run that
+route twice, at which point it is guaranteed to be done. Here is one such route
+(starting from the post office):*/
+
+const mailRoute = [
+"Alice's House", "Cabin", "Alice's House", "Bob's House",
+"Town Hall", "Daria's House", "Ernie's House",
+"Grete's House", "Shop", "Grete's House", "Farm",
+"Marketplace", "Post Office"
+]
+
+function routeRobot(state, memory){
+  if(memory.length == 0){
+    memory = mailRoute;
+  }
+  return {direction: memory[0], memory: memory.slice(1)};
+}
